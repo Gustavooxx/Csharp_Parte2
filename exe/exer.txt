@@ -1,0 +1,49 @@
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Apresentacao();
+        string tipo = pegarTipo();
+        int qtd = qtdIngresso();
+        string resultado = Resu(tipo, qtd);
+        Console.WriteLine(resultado);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DO INGRESSO");
+    }
+
+    public static string pegarTipo()
+    {
+        Console.WriteLine("Informe o tipo do ingresso (Meia ou Inteira):");
+        string tipo = Console.ReadLine().ToLower();
+        return tipo;
+    }
+
+    public static int qtdIngresso()
+    {
+        Console.WriteLine("Informe a quantidade de ingressos:");
+        int qtd = Convert.ToInt32(Console.ReadLine());
+        return qtd;
+    }
+
+    public static string Resu(string tipo, int qtd)
+    {
+        double precoUnitario = tipo == "meia" ? 14.25 : 28.50;
+        double total = 0;
+
+        for (int i = 0; i < qtd; i++)
+        {
+            total += precoUnitario;
+        }
+
+        return $"Total a pagar: R$ {total}";
+    }
+}
+
+
+
+
