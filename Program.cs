@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 
 namespace Csharp_Parte2;
 
@@ -6,28 +6,42 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Informe a cor do semáforo:");
-        string cor = Console.ReadLine().ToLower();
-        string acao = GetAction(cor);
-        Console.WriteLine(acao);
+        Apresentacao();
+        int salario = pegarSalario();
+        int gastos = pegarGastos();
+        string resultado = Resu(salario, gastos);
+        Console.WriteLine(resultado);
     }
 
-    static string GetAction(string cor)
+    public static void Apresentacao()
     {
-        var coresAcoes = new (string cor, string acao)[]
-        {
-            ("verde", "atravesse"),
-            ("vermelho", "espere")
-        };
-
-        for (int i = 0; i < coresAcoes.Length; i++)
-        {
-            if (coresAcoes[i].cor == cor)
-            {
-                return coresAcoes[i].acao;
-            }
-        }
-
-        return "Farol inoperante";
+        Console.WriteLine("PROGRAMA DO ORCAMENTO");
     }
+
+    public static int pegarSalario()
+    {
+        Console.WriteLine("Informe o salario:");
+        int salario = Convert.ToInt32(Console.ReadLine());
+        return salario;
+    }
+
+    public static int pegarGastos()
+    {
+        Console.WriteLine("Informe os gastos:");
+        int gastos = Convert.ToInt32( Console.ReadLine());
+        return gastos;
+    }
+    public static string Resu(int salario, int gastos)
+    {
+        int orcamento = salario - gastos;
+        if (orcamento >= 0)
+        {
+            return "Você está dentro do orçamento!";
+        }
+        else
+        {
+            return "Você está fora do orçamento! Não gaste mais!";
+        }
+    }
+    
 }
