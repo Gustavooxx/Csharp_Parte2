@@ -83,3 +83,360 @@ class Program
 
 
 
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        int dia = pegarDiaSemana();
+        diaSemana(dia);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DA SEMANA ");
+    }
+
+    public static int pegarDiaSemana()
+    {
+        Console.WriteLine("Informe o número do dia da semana (0-6):");
+        int dia = Convert.ToInt32(Console.ReadLine());
+        return dia;
+    }
+
+    public static void diaSemana(int dia)
+    {
+        string[] diasSemana = { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" };
+
+        if (dia >= 0 && dia <= 6)
+        {
+            Console.WriteLine($"O dia da semana é: {diasSemana[dia]}");
+        }
+        else
+        {
+            Console.WriteLine("Dia da semana inválido");
+        }
+    }
+}
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        int dia = pegarMes();
+        Mes(dia);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DA MES ");
+    }
+
+    public static int pegarMes()
+    {
+        Console.WriteLine("Informe o número do mes (0-12):");
+        int mes = Convert.ToInt32(Console.ReadLine());
+        return mes;
+    }
+
+    public static void Mes(int dia)
+    {
+        string[] Mes = {"mes invalido","janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
+
+        if (dia >= 1 && dia <= 12)
+        {
+            Console.WriteLine($"O mes é: {Mes[dia]}");
+        }
+        else
+        {
+            Console.WriteLine("Mes inválido");
+        }
+    }
+}
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        double peso = pegarPeso();
+        Valor(peso);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DO PESO SORVETE ");
+    }
+
+    public static double pegarPeso()
+    {
+        Console.WriteLine("Informe o peso do sorvete");
+        double peso = Convert.ToDouble(Console.ReadLine());
+        return peso;
+    }
+
+    public static void Valor(double peso)
+    {
+        if (peso <= 0)
+        {
+            Console.WriteLine("Peso Inválido");
+            return;
+        }
+
+        double precoPor100g = (peso >= 1000) ? 3.00 : 3.50;
+        double total = (peso / 100) * precoPor100g;
+        Console.WriteLine($"O total a se pagar é: R$ {total}");
+    }
+}
+
+
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        double peso = pegarFebre();
+        Valor(peso);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DA FEBRE ");
+    }
+
+    public static double pegarFebre()
+    {
+        Console.WriteLine("Informe sua temperatura corporal:");
+        double temp = Convert.ToDouble(Console.ReadLine());
+        return temp;
+    }
+
+    public static void Valor(double temp)
+    {
+        if (temp >= 41)
+        {
+            Console.WriteLine("A situação para a sua temperatura é Hipertamia");
+        }
+        else if (temp >= 39.6 && temp < 41)
+        {
+            Console.WriteLine("A situação para a sua temperatura é Febre Alta");
+        }
+        else if (temp >= 37.6 && temp < 39.6)
+        {
+            Console.WriteLine("A situação para a sua temperatura é Febre");
+        }
+        else if (temp >= 36 && temp < 37.6)
+        {
+            Console.WriteLine("A situação para a sua temperatura é Normal");
+        }
+        else if (temp < 36)
+        {
+            Console.WriteLine("A situação para a sua temperatura é Hipotermia");
+        }
+
+    }
+}
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Apresentacao();
+        double nota1 = ObterNota("primeira");
+        double nota2 = ObterNota("segunda");
+        double nota3 = ObterNota("terceira");
+        double media = CalcularMedia(nota1, nota2, nota3);
+        string situacao = AvaliarSituacao(media);
+        Console.WriteLine($"Média: {media:F2}");
+        Console.WriteLine($"Situação: {situacao}");
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DE CÁLCULO DE MÉDIA ESCOLAR");
+    }
+
+    public static double ObterNota(string ordem)
+    {
+        Console.Write($"Informe a {ordem} nota: ");
+        return Convert.ToDouble(Console.ReadLine());
+    }
+
+    public static double CalcularMedia(double n1, double n2, double n3)
+    {
+        return (n1 + n2 + n3) / 3;
+    }
+
+    public static string AvaliarSituacao(double media)
+    {
+        if (media >= 8)
+        {
+            return "Aprovado com sucesso";
+        }
+        else if (media >= 6 && media < 8)
+        {
+            return "Aprovado";
+        }
+        else if (media >= 3 && media < 6)
+        {
+            return "recuperação";
+        }
+        else if (media < 3)
+        {
+            return "Reprovado";
+        }
+        else
+        {
+            return "Desistente";
+        }
+    }
+}
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Apresentacao();
+        double altura = ObterAltura();
+        double peso = ObterPeso();
+        double imc = CalcularIMC(peso, altura);
+        string situacao = AvaliarSituacao(imc);
+        Console.WriteLine($"O IMC é {imc:F2} e a situação é {situacao}");
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DE CÁLCULO DE IMC");
+    }
+
+    public static double ObterAltura()
+    {
+        Console.Write("Informe a altura (em metros): ");
+        return Convert.ToDouble(Console.ReadLine());
+    }
+
+    public static double ObterPeso()
+    {
+        Console.Write("Informe o peso (em kg): ");
+        return Convert.ToDouble(Console.ReadLine());
+    }
+
+    public static double CalcularIMC(double peso, double altura)
+    {
+        return peso / (altura * altura);
+    }
+
+    public static string AvaliarSituacao(double imc)
+    {
+        if (imc < 18.5)
+        {
+            return "Abaixo do peso";
+        }
+        else if (imc >= 18.5 && imc < 25)
+        {
+            return "Peso normal";
+        }
+        else if (imc >= 25 && imc < 30)
+        {
+            return "Sobrepeso";
+        }
+        else if (imc >= 30 && imc < 35)
+        {
+            return "Obesidade grau I";
+        }
+        else if (imc >= 35 && imc < 40)
+        {
+            return "Obesidade grau II";
+        }
+        else
+        {
+            return "Obesidade grau III";
+        }
+    }
+}
+
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        double dia = pegarMes("dia:");
+       double diasSemana =  pegarMes("dia da semana:");
+       double mes =  pegarMes("mes:");
+       double ano =  pegarMes("ano:");
+       
+        Mes((int)dia, (int)diasSemana, (int)mes, (int)ano);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DA MES ");
+    }
+
+    public static int pegarMes(string ordem)
+    {
+        Console.WriteLine($"informe o {ordem}");
+        int mes = Convert.ToInt32(Console.ReadLine());
+        return mes;
+    }
+
+    public static void Mes(int dia , int diaSemanal, int mes, int ano)
+    {   
+          string[] diasSemana = { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" };
+        string[] Mes = { "mes invalido", "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" };
+
+            Console.WriteLine($"Enviado {diasSemana[diaSemanal]}, {dia} de {Mes[mes]} de {ano}");
+    }
+}
