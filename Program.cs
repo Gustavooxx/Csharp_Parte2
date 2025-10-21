@@ -8,31 +8,68 @@ class Program
     {
 
         Apresentacao();
-        double dia = pegarMes("dia:");
-       double diasSemana =  pegarMes("dia da semana:");
-       double mes =  pegarMes("mes:");
-       double ano =  pegarMes("ano:");
-       
-        Mes((int)dia, (int)diasSemana, (int)mes, (int)ano);
+        var (valor1, valor2, operacao) = pegarValoresEOperacao();
+        Calcular(valor1, valor2, operacao);
     }
 
     public static void Apresentacao()
     {
-        Console.WriteLine("PROGRAMA DA MES ");
+        Console.WriteLine("CALCULADORA");
     }
 
-    public static int pegarMes(string ordem)
+    public static (double valor1, double valor2, string operacao) pegarValoresEOperacao()
     {
-        Console.WriteLine($"informe o {ordem}");
-        int mes = Convert.ToInt32(Console.ReadLine());
-        return mes;
+        Console.WriteLine("informe o primeiro valor:");
+        double valor1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("informe o segundo valor:");
+        double valor2 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("informe a operação (soma, subtracao, multiplicacao, divisao, resto, potencia):");
+        string operacao = Console.ReadLine().ToLower();
+        return (valor1, valor2, operacao);
     }
 
-    public static void Mes(int dia , int diaSemanal, int mes, int ano)
-    {   
-          string[] diasSemana = { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" };
-        string[] Mes = { "mes invalido", "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" };
-
-            Console.WriteLine($"Enviado {diasSemana[diaSemanal]}, {dia} de {Mes[mes]} de {ano}");
+    public static void Calcular(double valor1, double valor2, string operacao)
+    {
+        double resultado;
+        if (operacao == "soma")
+        {
+            resultado = valor1 + valor2;
+        }
+        else if (operacao == "subtracao")
+        {
+            resultado = valor1 - valor2;
+        }
+        else if (operacao == "multiplicacao")
+        {
+            resultado = valor1 * valor2;
+        }
+        else if (operacao == "divisao")
+        {
+            if (valor2 == 0)
+            {
+                Console.WriteLine("Erro: Divisão por zero.");
+                return;
+            }
+            resultado = valor1 / valor2;
+        }
+        else if (operacao == "resto")
+        {
+            if (valor2 == 0)
+            {
+                Console.WriteLine("Erro: Divisão por zero.");
+                return;
+            }
+            resultado = valor1 % valor2;
+        }
+        else if (operacao == "potencia")
+        {
+            resultado = Math.Pow(valor1, valor2);
+        }
+        else
+        {
+            Console.WriteLine("Operação não suportada");
+            return;
+        }
+        Console.WriteLine($"Resultado: {resultado}");
     }
 }

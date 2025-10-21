@@ -440,3 +440,204 @@ class Program
             Console.WriteLine($"Enviado {diasSemana[diaSemanal]}, {dia} de {Mes[mes]} de {ano}");
     }
 }
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        List<int> lados = pegarLados();
+        Resu(lados);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DO TIPO DE TRIANGULO");
+    }
+
+    public static List<int> pegarLados()
+    {
+        List<int> lados = new List<int>();
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine($"informe o lado {i + 1}:");
+            int lado = Convert.ToInt32(Console.ReadLine());
+            lados.Add(lado);
+        }
+        return lados;
+    }
+
+    public static void Resu(List<int> lados)
+    {
+
+        if (lados[0] == lados[1] && lados[1] == lados[2])
+        {
+            Console.WriteLine("Esse triângulo é Equilátero");
+        }
+        else if (lados[0] == lados[1] || lados[0] == lados[2] || lados[1] == lados[2])
+        {
+            Console.WriteLine("Esse triângulo é Isósceles");
+        }
+        else
+        {
+            Console.WriteLine("Esse triângulo é Escaleno");
+        }
+    }
+}
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        var (notas, faltas) = pegarNotasEFaltas();
+        ClassificarAluno(notas, faltas);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("PROGRAMA DE CLASSIFICAÇÃO DE ALUNO");
+    }
+
+    public static (List<double> notas, int faltas) pegarNotasEFaltas()
+    {
+        List<double> notas = new List<double>();
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine($"informe a nota {i + 1}:");
+            double nota = Convert.ToDouble(Console.ReadLine());
+            notas.Add(nota);
+        }
+        Console.WriteLine("informe a quantidade de faltas:");
+        int faltas = Convert.ToInt32(Console.ReadLine());
+        return (notas, faltas);
+    }
+
+    public static void ClassificarAluno(List<double> notas, int faltas)
+    {
+        if (faltas > 30)
+        {
+            Console.WriteLine("Reprovado por faltas.");
+            return;
+        }
+
+        double media = (notas[0] + notas[1] + notas[2]) / 3;
+
+        if (media >= 8)
+        {
+            Console.WriteLine("Aprovado com Sucesso");
+        }
+        else if (media >= 6)
+        {
+            Console.WriteLine("Aprovado");
+        }
+        else if (media >= 3)
+        {
+            Console.WriteLine("Recuperação");
+        }
+        else if (media > 0)
+        {
+            Console.WriteLine("Reprovado");
+        }
+        else
+        {
+            Console.WriteLine("Desistente");
+        }
+    }
+}
+
+
+
+
+
+using System;
+
+namespace Csharp_Parte2;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        Apresentacao();
+        var (valor1, valor2, operacao) = pegarValoresEOperacao();
+        Calcular(valor1, valor2, operacao);
+    }
+
+    public static void Apresentacao()
+    {
+        Console.WriteLine("CALCULADORA");
+    }
+
+    public static (double valor1, double valor2, string operacao) pegarValoresEOperacao()
+    {
+        Console.WriteLine("informe o primeiro valor:");
+        double valor1 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("informe o segundo valor:");
+        double valor2 = Convert.ToDouble(Console.ReadLine());
+        Console.WriteLine("informe a operação (soma, subtracao, multiplicacao, divisao, resto, potencia):");
+        string operacao = Console.ReadLine().ToLower();
+        return (valor1, valor2, operacao);
+    }
+
+    public static void Calcular(double valor1, double valor2, string operacao)
+    {
+        double resultado;
+        if (operacao == "soma")
+        {
+            resultado = valor1 + valor2;
+        }
+        else if (operacao == "subtracao")
+        {
+            resultado = valor1 - valor2;
+        }
+        else if (operacao == "multiplicacao")
+        {
+            resultado = valor1 * valor2;
+        }
+        else if (operacao == "divisao")
+        {
+            if (valor2 == 0)
+            {
+                Console.WriteLine("Erro: Divisão por zero.");
+                return;
+            }
+            resultado = valor1 / valor2;
+        }
+        else if (operacao == "resto")
+        {
+            if (valor2 == 0)
+            {
+                Console.WriteLine("Erro: Divisão por zero.");
+                return;
+            }
+            resultado = valor1 % valor2;
+        }
+        else if (operacao == "potencia")
+        {
+            resultado = Math.Pow(valor1, valor2);
+        }
+        else
+        {
+            Console.WriteLine("Operação não suportada");
+            return;
+        }
+        Console.WriteLine($"Resultado: {resultado}");
+    }
+}
