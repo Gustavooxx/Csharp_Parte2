@@ -6,70 +6,54 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("Calculadora de Mensalidade de Faculdade de Tecnologia");
 
-        Apresentacao();
-        var (valor1, valor2, operacao) = pegarValoresEOperacao();
-        Calcular(valor1, valor2, operacao);
-    }
+        Console.WriteLine("Informe a sigla do curso (SI, ADS, CS, EC, ES):");
+        string curso = Console.ReadLine().ToUpper();
 
-    public static void Apresentacao()
-    {
-        Console.WriteLine("CALCULADORA");
-    }
+        Console.WriteLine("É isento? (sim ou nao):");
+        string isento = Console.ReadLine().ToLower();
 
-    public static (double valor1, double valor2, string operacao) pegarValoresEOperacao()
-    {
-        Console.WriteLine("informe o primeiro valor:");
-        double valor1 = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("informe o segundo valor:");
-        double valor2 = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("informe a operação (soma, subtracao, multiplicacao, divisao, resto, potencia):");
-        string operacao = Console.ReadLine().ToLower();
-        return (valor1, valor2, operacao);
-    }
+        Console.WriteLine("Informe o desconto em (%):");
+        double desconto = Convert.ToDouble(Console.ReadLine());
 
-    public static void Calcular(double valor1, double valor2, string operacao)
-    {
-        double resultado;
-        if (operacao == "soma")
+        double mensalidadeBase = 0;
+        if (curso == "SI")
         {
-            resultado = valor1 + valor2;
+            mensalidadeBase = 550.00;
         }
-        else if (operacao == "subtracao")
+        else if (curso == "ADS")
         {
-            resultado = valor1 - valor2;
+            mensalidadeBase = 750.00;
         }
-        else if (operacao == "multiplicacao")
+        else if (curso == "CS")
         {
-            resultado = valor1 * valor2;
+            mensalidadeBase = 1150.00;
         }
-        else if (operacao == "divisao")
+        else if (curso == "EC")
         {
-            if (valor2 == 0)
-            {
-                Console.WriteLine("Erro: Divisão por zero.");
-                return;
-            }
-            resultado = valor1 / valor2;
+            mensalidadeBase = 1300.00;
         }
-        else if (operacao == "resto")
+        else if (curso == "ES")
         {
-            if (valor2 == 0)
-            {
-                Console.WriteLine("Erro: Divisão por zero.");
-                return;
-            }
-            resultado = valor1 % valor2;
-        }
-        else if (operacao == "potencia")
-        {
-            resultado = Math.Pow(valor1, valor2);
+            mensalidadeBase = 950.00;
         }
         else
         {
-            Console.WriteLine("Operação não suportada");
+            Console.WriteLine("Curso inválido.");
             return;
         }
-        Console.WriteLine($"Resultado: {resultado}");
+
+        double mensalidade;
+        if (isento == "sim")
+        {
+            mensalidade = 0.00;
+        }
+        else
+        {
+            mensalidade = mensalidadeBase * (1 - desconto / 100);
+        }
+
+        Console.WriteLine($"Valor da mensalidade: R$ {mensalidade}");
     }
 }
